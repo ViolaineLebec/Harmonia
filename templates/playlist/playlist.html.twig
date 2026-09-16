@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Playlist sélectionnée{% endblock %}
+
+{% block body %}
+    <button><a href="{{ path('app_playlists') }}" class="text-center">Retour</a></button>
+    <h1>{{ playlist.name }}</h1>
+    {% for track in playlist.tracks %}
+        <div><a href="{{ path('app_track', {'id': track.id}) }}">{{ track.title }}</a></div>
+    {% endfor %}
+    
+
+
+
+{% endblock %}

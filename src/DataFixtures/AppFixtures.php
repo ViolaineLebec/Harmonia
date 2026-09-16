@@ -22,16 +22,16 @@ class AppFixtures extends Fixture
 
         ArtistFactory::createMany(50);
         UserFactory::createMany(500);
-        AlbumFactory::createMany(100);
+        AlbumFactory::createMany(50);
         foreach($genresArray as $value){
             GenreFactory::createOne([
                 'label' => $value
             ]);
         }
-        TrackFactory::createMany(1000);
-        PlaylistFactory::createMany(500);
-        FavoriteFactory::createMany(200);
-        HistoryFactory::createMany(5000);
+        TrackFactory::createMany(100);
+        PlaylistFactory::createMany(100);
+        FavoriteFactory::createMany(50);
+        HistoryFactory::createMany(200);
 
         $manager->flush();
     }

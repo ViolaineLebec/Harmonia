@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Morceau sélectionné{% endblock %}
+
+{% block body %}
+    <button><a href="{{ path('app_album', {'id': track.album.id}) }}" class="text-center">Album</a></button>
+
+    <h2>{{ track.title }}</h2>
+    <h4>Genres :</h4>
+    {% for genre in track.genres %}
+        <div><a href="{{ path('app_genre', {'id': genre.id}) }}">{{ genre.label }}</a></div>
+    {% endfor %}
+
+{% endblock %}

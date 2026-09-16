@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Album sélectionné{% endblock %}
+
+{% block body %}
+<h1 class="text-center">{{album.title}}</h1>
+<div class="container-fluid bg-secondary">
+    <div class="row justify-content-center">
+        <div class="card col-6 m-2 p-2">
+            <img src="{{asset(album.imagePath)}}" alt="">
+            <p class="text-center fw-bold">{{album.title}}</p>
+            <p class="text-center">Artiste : {{album.artist.stageName}}</p>
+            <p>Date de sortie : {{album.releaseDate | date('d/m/Y')}}</p>
+            {% for track in album.tracks %}
+            <p>{{track.trackNumber}}/ {{track.title}} Durée : {{track.duration}} secondes</p>
+            <a href="{{path('app_track', {'id': track.id})}}" class="text-center">Détails</a>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

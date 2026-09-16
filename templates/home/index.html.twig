@@ -3,21 +3,41 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    
+   
+    <h2 class="text-center m-3">Les albums</h2>
 
-<h2 class="text-center m-3">Les albums</h2>
-
-<div class="container-fluid bg-secondary">
-    <div class="row justify-content-center">
-        {% for album in albums %}
-        <div class="card col-3 m-2 p-2">
-            <img src="{{asset(album.imagePath)}}" alt="">
-            <p class="text-center fw-bold">{{album.title}}</p>
-            <p class="text-center">Artiste : {{album.artist.stageName}}</p>
-            <p>Date de sortie : {{album.createdAt | date('d/m/Y h:i:s')}}</p>
+    <div class="container-fluid bg-secondary">
+        <div class="row justify-content-center">
+            {% for album in albums %}
+                <div class="col-3">
+                    {% include 'components/album-card.html.twig' %}
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
+
+    <h2 class="text-center m-3">Les EPs</h2>
+
+    <div class="container-fluid bg-secondary">
+        <div class="row justify-content-center">
+            {% for album in EPs %}
+                <div class="col-3">
+                    {% include 'components/album-card.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <h2 class="text-center m-3">Les singles</h2>
+
+    <div class="container-fluid bg-secondary">
+        <div class="row justify-content-center">
+            {% for album in singles %}
+                <div class="col-3">
+                    {% include 'components/album-card.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

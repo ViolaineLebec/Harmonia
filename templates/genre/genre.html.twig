@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genre sélectionné{% endblock %}
+
+{% block body %}
+    <h2>{{ genre.label }}</h2>
+    <h4>Morceaux :</h4>
+    {% for track in genre.tracks %}
+        <div><a href="{{ path('app_track', {'id': track.id}) }}">{{ track.title }}</a></div>
+    {% endfor %}
+{% endblock %}

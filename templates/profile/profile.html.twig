@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil actif{% endblock %}
+
+{% block body %}
+    <h1>
+        Bienvenue sur votre espace personnel, {{ app.user.email }}!
+    </h1>
+    {# <p>
+        Votre mot de passe est : {{ app.user.password }}
+    </p> #}
+    <p>
+        Vous êtes inscrit depuis le : {{ app.user.createdAt|date('d/m/Y') }}
+    </p>
+    <div>
+        <p>Vos playlists sont :</p>
+        <ul>
+            {% for playlist in playlists %}
+                <li><a href="{{ path('app_playlist', {'id': playlist.id}) }}">{{ playlist.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {# <div>
+        <p>Vos favoris sont :</p>
+        <ul>
+            {% for favorite in favorites %}
+            <li><a href="">{{ favorite.track.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div> #}
+    {# <div>
+        <p>Historique d'écoutes :</p>
+        <ul>
+            {% for history in histories %}
+            <li><a href="">{{ history.track.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div> #}
+{% endblock %}

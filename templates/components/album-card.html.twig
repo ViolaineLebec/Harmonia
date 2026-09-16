@@ -1,0 +1,14 @@
+<div class="card m-2 p-2">
+    <img src="{{ asset(album.imagePath) }}" alt="">
+    <p class="text-center fw-bold">{{ album.title }}</p>
+    <p class="text-center">Artiste : {{ album.artist.stageName }}</p>
+    <p class="text-center">{{ album.tracks|length }}
+        {% if album.tracks|length > 1 %}
+            morceaux
+        {% else %}
+            morceau
+        {% endif %}
+    </p>
+    <p>Année de sortie : {{ album.releaseDate|date('Y') }}</p>
+    <a href="{{ path('app_album', {'id': album.id}) }}" class="text-center">Détails</a>
+</div>
