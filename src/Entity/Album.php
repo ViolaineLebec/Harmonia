@@ -21,9 +21,6 @@ class Album
     #[ORM\Column]
     private ?\DateTime $releaseDate = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $cover = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -42,6 +39,7 @@ class Album
 
     #[ORM\Column(length: 255)]
     private ?string $imagePath = null;
+
 
     public function __construct()
     {
@@ -73,18 +71,6 @@ class Album
     public function setReleaseDate(\DateTime $releaseDate): static
     {
         $this->releaseDate = $releaseDate;
-
-        return $this;
-    }
-
-    public function getCover(): ?string
-    {
-        return $this->cover;
-    }
-
-    public function setCover(?string $cover): static
-    {
-        $this->cover = $cover;
 
         return $this;
     }

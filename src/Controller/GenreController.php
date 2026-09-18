@@ -13,7 +13,6 @@ final class GenreController extends AbstractController
     public function genre($id, GenreRepository $genreRepository): Response
     {
         $genre = $genreRepository->find($id);
-        dump($genre);
         if ($genre === NULL) {
             return $this->redirectToRoute('app_home');
         }

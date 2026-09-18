@@ -6,6 +6,12 @@
     <button><a href="{{ path('app_album', {'id': track.album.id}) }}" class="text-center">Album</a></button>
 
     <h2>{{ track.title }}</h2>
+    {% if app.user %}
+        <button>
+            <a href="{{ path('app_handle_favorite', {'id': track.id}) }}">changer dans les favoris</a>
+        </button>
+    {% endif %}
+    
     <h4>Genres :</h4>
     {% for genre in track.genres %}
         <div><a href="{{ path('app_genre', {'id': genre.id}) }}">{{ genre.label }}</a></div>

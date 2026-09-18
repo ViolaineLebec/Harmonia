@@ -3,20 +3,22 @@
 {% block title %}Album sélectionné{% endblock %}
 
 {% block body %}
-<h1 class="text-center">{{album.title}}</h1>
-<div class="container-fluid bg-secondary">
-    <div class="row justify-content-center">
-        <div class="card col-6 m-2 p-2">
-            <img src="{{asset(album.imagePath)}}" alt="">
-            <p class="text-center fw-bold">{{album.title}}</p>
-            <p class="text-center">Artiste : {{album.artist.stageName}}</p>
-            <p>Date de sortie : {{album.releaseDate | date('d/m/Y')}}</p>
-            {% for track in album.tracks %}
-            <p>{{track.trackNumber}}/ {{track.title}} Durée : {{track.duration}} secondes</p>
-            <a href="{{path('app_track', {'id': track.id})}}" class="text-center">Détails</a>
-
-            {% endfor %}
+    <h1 class="text-center">{{ album.title }}</h1>
+    <div class="container-fluid bg-secondary">
+        <div class="row justify-content-center">
+            <div class="card col-6 m-2 p-2">
+                <img src="{{ asset(album.imagePath) }}" alt="">
+                <p class="text-center fw-bold">{{ album.title }}</p>
+                <p class="text-center">Artiste : {{ album.artist.stageName }}</p>
+                <p>Date de sortie : {{ album.releaseDate|date('d/m/Y') }}</p>
+                {% for track in album.tracks %}
+                    <p>{{ track.trackNumber }}/ {{ track.title }} Durée : {{ track.duration }} secondes</p>
+                    <a href="{{ path('app_track', {'id': track.id}) }}" class="text-center">Détails</a>
+                {% endfor %}
+                <button>
+                    <a href="{{ path('app_add_track', {'id': album.id}) }}" class="text-center">Ajouter un morceau</a>
+                </button>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

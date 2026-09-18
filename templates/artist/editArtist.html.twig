@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiste sélectionné{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.stageName) }}
+    {{ form_row(form.country) }}
+    {{ form_row(form.biography) }}
+    <button type=""submit>Modifier</button>
+    {{ form_end(form) }}
+{% endblock %}

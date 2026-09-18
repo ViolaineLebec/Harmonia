@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Favoris{% endblock %}
+
+{% block body %}
+    <h1>Favoris</h1>
+    {% for favorite in favorites %}
+        <div><a href="{{ path('app_track', {'id': favorite.track.id}) }}">{{ favorite.track.title }} ({{ favorite.track.artist.stageName }})</a></div>
+        <button>
+            <a href="{{ path('app_handle_favorite', {'id': favorite.track.id}) }}">Changer dans les favoris</a>
+        </button>
+    {% endfor %}
+{% endblock %}

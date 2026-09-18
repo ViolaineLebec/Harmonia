@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Album sélectionné{% endblock %}
+
+{% block body %}
+    <h1>Nouvel album</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.image) }}
+    <button type=""submit>Ajouter</button>
+    {{ form_end(form) }}
+{% endblock %}

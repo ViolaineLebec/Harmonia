@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiste sélectionné{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">{{ artist.stageName }}</h1>
+    <div class="container-fluid bg-secondary">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card m-2 p-2">
+                    <p class="text-center fw-bold">{{ artist.stageName }}</p>
+                    <p class="text-center">Pays : {{ artist.country }}</p>
+                    <p>Inscrit depuis : {{ artist.createdAT|date('Y') }}</p>
+                    {% for track in artist.tracks %}
+                        <p>{{ track.trackNumber }}/ {{ track.title }} Durée : {{ track.duration }} secondes</p>
+                        <a href="{{ path('app_track', {'id': track.id}) }}" class="text-center">Détails</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
