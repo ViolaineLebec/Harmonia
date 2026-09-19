@@ -10,6 +10,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class FavoriteController extends AbstractController
@@ -26,21 +27,24 @@ final class FavoriteController extends AbstractController
     }
 
     #[Route('/handle-favorite/{id}', name: 'app_handle_favorite')]
-    public function handleFavorite($id, EntityManagerInterface $em, TrackRepository $trackRepository, FavoriteRepository $favoriteRepository): Response
+    public function handleFavorite($id, EntityManagerInterface $em, TrackRepository $trackRepository, FavoriteRepository $favoriteRepository): JsonResponse
     {
         $user = $this->getUser();
-
-        if ($user === null) {
-            $this->redirectToRoute('app_login');
+        if (!$user) {
+            return $this->json(['message' => 'Non autorisé'], 401);
         }
+
+        // if ($user === null) {
+        //     $this->redirectToRoute('app_login');
+        // }
 
         $track = $trackRepository->find($id);
         $favorite = $favoriteRepository->findOneBy(['user' => $user, 'track' => $track]);
 
-        if ($favorite !== null) {
-            // $user->removeFavorite($favorite);
+        if ($favorite) {
             $em->remove($favorite);
             $em->flush();
+            $isFavorite = false;
         } else {
 
             $newFavorite = new Favorite();
@@ -49,9 +53,15 @@ final class FavoriteController extends AbstractController
             $newFavorite->setCreatedAt(new DateTimeImmutable());
             $em->persist($newFavorite);
             $em->flush();
+            $isFavorite = true;
         }
 
 
-        return $this->redirectToRoute('app_track', ['id' => $track->getId()]);
+        // return $this->redirectToRoute('app_track', ['id' => $track->getId()]);
+
+        return $this->json([
+            'isFavorite' => $isFavorite,
+            'label' => $isFavorite ? 'supprimer ce favori' : 'ajouter aux favoris'
+        ]);
     }
 }
