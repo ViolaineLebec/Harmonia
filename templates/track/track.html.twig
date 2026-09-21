@@ -15,7 +15,7 @@
 
     <h2>{{ track.title }}</h2>
     {% if app.user %}
-        <button class="btn btn-secondary bouton" data-url='{{ path('app_handle_favorite', {'id': track.id}) }}'>
+        <button class="btn btn-secondary bouton" id="btn-add-fav" data-btn-id='{{ track.id }}'>
             {{ isFav ? 'Supprimer ce favori' : 'Ajouter aux favoris' }}
         </button>
     {% endif %}
