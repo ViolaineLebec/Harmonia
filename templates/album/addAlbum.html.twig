@@ -3,9 +3,13 @@
 {% block title %}Album sélectionné{% endblock %}
 
 {% block body %}
-    <h1>Nouvel album</h1>
-    {{ form_start(form) }}
-    {{ form_row(form.image) }}
-    <button type=""submit>Ajouter</button>
-    {{ form_end(form) }}
+    <div class="container">
+        <h1>Nouvel album</h1>
+        <div class="col-12 col-sm-6 col-md-3">
+            {{ form_start(form) }}
+            {{ form_row(form.image) }}
+            <button type=""submit>Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

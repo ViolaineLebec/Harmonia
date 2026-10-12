@@ -3,7 +3,11 @@
 {% block title %}Nouvel artiste{% endblock %}
 
 {% block body %}
-    {{ form_start(formArtist) }}
-    <button type=""submit>Ajouter</button>
-    {{ form_end(formArtist) }}
+    <div class="container">
+        <div class="mx-auto col-12 col-md-6 my-3 p-3">
+            <h1 class="mb-4">Ajouter un artiste</h1>
+            {{ form_start(formArtist) }}
+            {{ form_end(formArtist) }}
+        </div>
+    </div>
 {% endblock %}

@@ -3,41 +3,27 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-   
-    <h2 class="text-center m-3">Les albums</h2>
 
-    <div class="container-fluid bg-secondary">
-        <div class="row justify-content-center">
-            {% for album in albums %}
-                <div class="col-3">
-                    {% include 'components/album-card.html.twig' %}
-                </div>
-            {% endfor %}
-        </div>
+    {# <div>
+        <a href="{{ path('/album-add') }}"></a><button>Ajouter un album</button>
     </div>
-
-    <h2 class="text-center m-3">Les EPs</h2>
-
-    <div class="container-fluid bg-secondary">
-        <div class="row justify-content-center">
-            {% for album in EPs %}
-                <div class="col-3">
-                    {% include 'components/album-card.html.twig' %}
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <h2 class="text-center m-3">Les singles</h2>
-
-    <div class="container-fluid bg-secondary">
-        <div class="row justify-content-center">
-            {% for album in singles %}
-                <div class="col-3">
-                    {% include 'components/album-card.html.twig' %}
-                </div>
-            {% endfor %}
-        </div>
+    #}
+    <div class="container">
+        {% include "components/album-loop.html.twig" with {
+            'title': 'albums',
+            'albums': albums
+        }
+        %}
+        {% include "components/album-loop.html.twig" with {
+            'title': 'EPs',
+            'albums': eps
+        }
+        %}
+        {% include "components/album-loop.html.twig" with {
+            'title': 'Singles',
+            'albums': singles
+        }
+        %}
     </div>
 
 {% endblock %}

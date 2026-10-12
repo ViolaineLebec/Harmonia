@@ -27,7 +27,7 @@ final class GenreExtension
     #[AsTwigFunction('getGenres')]
     public function doSomethingElse()
     {
-        $genresList = $this->genreRepository->findAll();
+        $genresList = $this->genreRepository->findBy([], ['label' => 'ASC']);
 
         return $genresList;
     }

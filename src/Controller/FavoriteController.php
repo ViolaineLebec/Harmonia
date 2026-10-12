@@ -34,9 +34,6 @@ final class FavoriteController extends AbstractController
             return $this->json(['message' => 'Non autorisé'], 401);
         }
 
-        // if ($user === null) {
-        //     $this->redirectToRoute('app_login');
-        // }
 
         $track = $trackRepository->find($id);
         $favorite = $favoriteRepository->findOneBy(['user' => $user, 'track' => $track]);

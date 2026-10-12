@@ -12,16 +12,16 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(AlbumRepository $albumRepository): Response
     {
-        $albums = $albumRepository->findBY(['type' => 'album']);
-        $EPs = $albumRepository->findBy(['type' => 'EP']);
-        $singles = $albumRepository->findBy(['type' => 'single']);
+        $eps = $albumRepository->findWithRelations('ep', 8);
 
-        $user = $this->getUser();
+        $singles = $albumRepository->findWithRelations('single', 12);
+
+        $albums = $albumRepository->findWithRelations('album', 4);
 
         return $this->render('home/index.html.twig', [
-            'albums' => $albums,
-            'EPs' => $EPs,
+            'eps' => $eps,
             'singles' => $singles,
+            'albums' => $albums,
         ]);
     }
 }
